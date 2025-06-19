@@ -3,7 +3,10 @@ default_platform(:android)
 platform :android do
   desc "Build and deploy to Play Store"
   lane :deploy do
-    gradle(task: "clean assembleRelease")
+    gradle(
+      task: "clean assembleRelease",
+      project_dir: "../"
+    )
 
     changelog = changelog_from_git_commits(
       between: ["last_tag", "HEAD"],
