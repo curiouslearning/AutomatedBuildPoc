@@ -18,6 +18,10 @@ jobs:
             sudo gem install fastlane
 
       - run:
+          name: Make gradlew executable
+          command: chmod +x ./gradlew
+
+      - run:
           name: Decode Service Account JSON
           command: |
             echo $JSON_KEY_DATA | base64 --decode > app/fastlane/service-account.json
