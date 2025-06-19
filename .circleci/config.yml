@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Decode Service Account JSON
           command: |
-            echo $JSON_KEY_DATA | base64 --decode > fastlane/service-account.json
+            echo $JSON_KEY_DATA | base64 --decode > app/fastlane/service-account.json
 
       - run:
           name: Run Fastlane
