@@ -1,0 +1,26 @@
+default_platform(:android)
+
+platform :android do
+  desc "Build and deploy to Play Store"
+  lane :deploy do
+    gradle(task: "clean assembleRelease")
+
+    changelog = changelog_from_git_commits(
+      between: ["last_tag", "HEAD"],
+      merge_commit_filtering: "exclude_merges"
+    )
+
+    upload_to_play_store(
+      track: "internal",
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      changelog: changelog
+    )
+
+    slack(
+      message: "✅ Build & deploy complete!\n#{changelog}",
+      success: true
+    )
+  end
+end

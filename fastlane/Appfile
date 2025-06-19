@@ -1,0 +1,2 @@
+json_key_file("service-account.json")  # This will be injected in CircleCI
+package_name("com.example.build_poc")
